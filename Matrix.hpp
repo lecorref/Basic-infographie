@@ -9,6 +9,7 @@
 class Matrix
 {
 	public:
+		Matrix(Matrix const & src);
 		virtual		~Matrix( void );
 		Matrix		operator*(Matrix const & rhs) const;
 		Vertex		operator*(Vertex const & vertex) const;
@@ -21,7 +22,6 @@ class Matrix
 	protected:
 		Matrix(void);
 		Matrix( double values[4][4] );
-		Matrix(Matrix const & src);
 		void		_initialize(double const values[4][4]);
 		double		_values[4][4];
 };

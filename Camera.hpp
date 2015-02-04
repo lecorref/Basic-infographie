@@ -3,33 +3,40 @@
 
 # include "ProjectionMatrix.hpp"
 # include "TranslationMatrix.hpp"
-# include "ProjectionMatrix.hpp"
 # include "Matrix.hpp"
 # include "Vertex.hpp"
 # include "Vector.hpp"
+# include "Triangle.hpp"
 
 class Camera
 {
 	public:
-		Camera( void );
+		Camera(Vertex const & origin, Matrix const & direction, double far, double near,
+				double height, double width, double fov );
 		Camera(Camera const & src );
 		~Camera( void );
 
+		void		setOrigin(Vertex const & vtx);
+		void		setDirection(Matrix	const & mtx);
 
+		Vertex		getOrigin(void) const;
+		Matrix 		getDirection(void) const;
+		Matrix 		getProjection(void) const;
 
 		Vertex		watchVertex(Vertex vertex);
-		Trian	watchtriangle(Vertex vertex);
+		Triangle	watchtriangle(Triangle tri);
 		Camera &	operator=( Camera const & rhs );
 	private:
-		Vertex				_origin;
+		Camera( void );
+
+		Vertex 				_origin;
 		Matrix				_direction;
-		RotationMatrix		_tRotation;
-		TranslationMatrix	_tTranslation;
-		Matrix				_viewMatrix;
-		double				_near;
 		double				_far;
-		double				_ratio;
-		ProjectionMatrix	_projection;
+		double				_near;
+		double				_height;
+		double				_width;
+		Matrix				_viewMatrix;
+		Matrix				_projection;
 };
 
 #endif /* CAMERA_HPP */
