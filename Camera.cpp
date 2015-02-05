@@ -2,14 +2,14 @@
 #include "Camera.hpp"
 
 Camera::Camera(Vertex const & origin, Matrix const & direction, double far, double near, double height,
-		double width, double fov ) : _origin(origin), _direction(direction),
+		double width, double fov ) : _origin(&origin), _direction(&direction),
 	_far(far), _near(near), _height(height), _width(width)
 {
 	Vector	vct(origin);
 	Matrix rot = direction.inverse();
 	TranslationMatrix tlt(-vct);
-	this->_viewMatrix = rot * tlt;
-	this->_projection = ProjectionMatrix(fov, width/height, near, far);
+	this->_viewMatrix = new Matrix(rot * tlt);
+	this->_projection = new ProjectionMatrix(fov, width/height, near, far);
 }
 
 Camera::Camera(Camera const & src )
@@ -21,35 +21,35 @@ Camera::~Camera( void )
 {
 }
 
-void		Camera::setOrigin(Vertex const & vtx)
+void		Camera::setOrigin(Vertex const * vtx)
 {
 	this->_origin = vtx;
 }
 
-void		Camera::setDirection(Matrix	const & mtx)
+void		Camera::setDirection(Matrix	const * mtx)
 {
 	this->_direction = mtx;
 }
 
-Vertex	Camera::getOrigin(void) const
+Vertex const	Camera::getOrigin(void) const
 {
-	return this->_origin;
+	return *this->_origin;
 }
 
-Matrix	Camera::getDirection(void) const
+Matrix const	Camera::getDirection(void) const
 {
-	return this->_direction;
+	return *this->_direction;
 }
 
-Matrix	Camera::getProjection(void) const
+Matrix const	Camera::getProjection(void) const
 {
-	return this->_projection;
+	return *this->_projection;
 }
 
 Vertex		Camera::watchVertex(Vertex vertex)
 {
-	Vertex tmp = this->_viewMatrix.transformVertex(vertex);
-	Vertex nvtx = this->_projection.transformVertex(tmp);
+	Vertex tmp = this->_viewMatrix->transformVertex(vertex);
+	Vertex nvtx = this->_projection->transformVertex(tmp);
 	nvtx.setX((nvtx.getX() / nvtx.getW()) * (this->_width / 2) + (this->_width / 2));
 	nvtx.setY((nvtx.getY() / nvtx.getW()) * (this->_height / 2) + (this->_height / 2));
 	nvtx.setZ((nvtx.getZ() / nvtx.getW()) * ((this->_width - this->_height)/ 2) + ((this->_far + this->_near) / 2));

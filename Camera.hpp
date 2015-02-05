@@ -16,12 +16,12 @@ class Camera
 		Camera(Camera const & src );
 		~Camera( void );
 
-		void		setOrigin(Vertex const & vtx);
-		void		setDirection(Matrix	const & mtx);
+		void		setOrigin(Vertex const * vtx);
+		void		setDirection(Matrix	const * mtx);
 
-		Vertex		getOrigin(void) const;
-		Matrix 		getDirection(void) const;
-		Matrix 		getProjection(void) const;
+		Vertex const	getOrigin(void) const;
+		Matrix const	getDirection(void) const;
+		Matrix const	getProjection(void) const;
 
 		Vertex		watchVertex(Vertex vertex);
 		Triangle	watchtriangle(Triangle tri);
@@ -29,14 +29,15 @@ class Camera
 	private:
 		Camera( void );
 
-		Vertex 				_origin;
-		Matrix				_direction;
+		Vertex const *		_origin;
+		Matrix const *		_direction;
 		double				_far;
 		double				_near;
 		double				_height;
 		double				_width;
-		Matrix				_viewMatrix;
-		Matrix				_projection;
+		double				_fov;
+		Matrix const *		_viewMatrix;
+		Matrix const *		_projection;
 };
 
 #endif /* CAMERA_HPP */
