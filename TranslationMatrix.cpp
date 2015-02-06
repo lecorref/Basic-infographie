@@ -14,6 +14,7 @@ TranslationMatrix::TranslationMatrix( Vector const & vtc )
 		{ 0, 0, 0, vtc.getZ() },
 		{ 0, 0, 0, 1 },
 	};
+	std::cout << "[TranslationMatrix] created" << std::endl;
 	this->_initialize(tab);
 	return ;
 }

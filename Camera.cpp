@@ -6,17 +6,20 @@ Camera::Camera(Vertex const & origin, Matrix const & direction, double far, doub
 	_far(far), _near(near), _height(height), _width(width), _viewMatrix(this->_initializeView(origin, direction)),
 	_projection(this->_initializeProjection(fov, width, height, near, far))
 {
+	std::cout << "[Camera] created" << std::endl;
 	return ;
 }
 
 Camera::Camera(Camera const & src)
 {
+	std::cout << "[Camera] created" << std::endl;
 	*this = src;
 	return ;
 }
 
 Camera::~Camera( void )
 {
+	std::cout << "[Camera] destructed" << std::endl;
 }
 
 Matrix		Camera::_initializeView(Vector const & origin, Matrix const & direction)

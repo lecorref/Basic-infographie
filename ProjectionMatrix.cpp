@@ -3,6 +3,7 @@
 
 ProjectionMatrix::ProjectionMatrix( void )
 {
+	std::cout << "[ProjectionMatrix] created" << std::endl;
 	return ;
 }
 
@@ -15,18 +16,21 @@ ProjectionMatrix::ProjectionMatrix( double const angle, double const ratio, doub
 		{ 0, 0, (far + near) / (near - far), (2 * far * near) / (near - far) },
 		{ 0, 0, -1, 0 },
 	};
+	std::cout << "[ProjectionMatrix] created" << std::endl;
 	this->_initialize(tab);
 	return ;
 }
 
 ProjectionMatrix::ProjectionMatrix(ProjectionMatrix const & src)
 {
+	std::cout << "[ProjectionMatrix] created" << std::endl;
 	*this = src;
 	return ;
 }
 
 ProjectionMatrix::~ProjectionMatrix( void )
 {
+	std::cout << "[ProjectionMatrix] destructed" << std::endl;
 	return ;
 }
 

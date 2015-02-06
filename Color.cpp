@@ -2,27 +2,32 @@
 
 Color::Color( void ) : _r(0), _g(0), _b(0)
 {
+	std::cout << "[Color] created" << std::endl;
 	return ;
 }
 
 Color::Color( unsigned int color ) : _r((color & 0xFF0000) >> 16), _g((color & 0x00FF00) >> 8), _b((color & 0x0000FF))
 {
+	std::cout << "[Color] created" << std::endl;
 	return ;
 }
 
 Color::Color( unsigned char r, unsigned char g, unsigned char b) : _r(r), _g(g), _b(b)
 {
+	std::cout << "[Color] created" << std::endl;
 	return ;
 }
 
 Color::Color(Color const & src)
 {
+	std::cout << "[Color] created" << std::endl;
 	*this = src;
 	return ;
 }
 
 Color::~Color( void )
 {
+	std::cout << "[Color] destructed" << std::endl;
 	return ;
 }
 
