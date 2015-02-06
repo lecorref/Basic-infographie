@@ -3,22 +3,34 @@
 
 Camera::Camera(Vertex const & origin, Matrix const & direction, double far, double near, double height,
 		double width, double fov ) : _origin(origin), _direction(direction),
-	_far(far), _near(near), _height(height), _width(width)
+	_far(far), _near(near), _height(height), _width(width), _viewMatrix(this->_initializeView(origin, direction)),
+	_projection(this->_initializeProjection(fov, width, height, near, far))
 {
-	Vector	vct(origin);
-	Matrix rot = direction.inverse();
-	TranslationMatrix tlt(-vct);
-	this->_viewMatrix = rot * tlt;
-	this->_projection = ProjectionMatrix(fov, width/height, near, far);
+	return ;
 }
 
-Camera::Camera(Camera const & src )
+Camera::Camera(Camera const & src)
 {
 	*this = src;
+	return ;
 }
 
 Camera::~Camera( void )
 {
+}
+
+Matrix		Camera::_initializeView(Vector const & origin, Matrix const & direction)
+{
+	Vector				vct(origin);
+	Matrix				rot = direction.inverse();
+	TranslationMatrix	tlt(-vct);
+	return (rot * tlt);
+}
+
+Matrix		Camera::_initializeProjection(double const fov, double const width,
+				double const height, double const near, double const far)
+{
+	return ProjectionMatrix(fov, width/height, near, far);
 }
 
 void		Camera::setOrigin(Vertex const & vtx)

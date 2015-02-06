@@ -3,6 +3,12 @@
 
 Matrix::Matrix( void )
 {
+	double	tab[4][4];
+
+	for (int i = 0; i < 4; i++)
+		for (int j = 0; j < 4; j++)
+			tab[i][j] = 0;
+	this->_initialize(tab);
 	return ;
 }
 
@@ -28,7 +34,6 @@ Matrix		Matrix::operator*(Matrix const & rhs) const
 	double	tab[4][4];
 	double	tmp;
 	for (int i = 0; i < 4; i++)
-	{
 		for (int j = 0; j < 4; j++)
 		{
 			tmp = 0;
@@ -36,7 +41,6 @@ Matrix		Matrix::operator*(Matrix const & rhs) const
 				tmp += this->_values[i][k] * rhs._values[k][j];
 			tab[i][j] = tmp;
 		}
-	}
 	return Matrix(tab);
 }
 
@@ -61,12 +65,8 @@ Matrix		Matrix::inverse() const
 void		Matrix::_initialize(double const values[4][4])
 {
 	for (int i = 0; i < 4; i++)
-	{
 		for (int j = 0; j < 4; j++)
-		{
 			this->_values[i][j] = values[i][j];
-		}
-	}
 }
 
 Vertex		Matrix::operator*(Vertex const & vertex) const

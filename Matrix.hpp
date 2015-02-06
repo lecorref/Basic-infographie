@@ -9,6 +9,7 @@
 class Matrix
 {
 	public:
+		Matrix(void);
 		Matrix(Matrix const & src);
 		virtual		~Matrix( void );
 		Matrix		operator*(Matrix const & rhs) const;
@@ -20,7 +21,6 @@ class Matrix
 		std::string	toString() const;
 
 	protected:
-		Matrix(void);
 		Matrix( double values[4][4] );
 		void		_initialize(double const values[4][4]);
 		double		_values[4][4];

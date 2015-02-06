@@ -28,6 +28,9 @@ class Camera
 		Camera &	operator=( Camera const & rhs );
 	private:
 		Camera( void );
+		Matrix				_initializeView(Vector const & origin, Matrix const & direction);
+		Matrix				_initializeProjection(double const fov, double const width,
+									double const height, double const near, double const far);
 
 		Vertex 				_origin;
 		Matrix				_direction;
