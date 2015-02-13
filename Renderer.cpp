@@ -18,12 +18,12 @@ void		Renderer::init()
 	return ;
 }
 
-void		Renderer::run(std::vector<std::vector<Vertex> > vtx)
+void		Renderer::run(std::vector<std::vector<Vertex> > vtx, int sizex, int sizey)
 {
-	std::vector<std::vector<Vertex> >	iso;
+	std::vector<std::vector<Vertex> >	iso = Isometry::toIso(*Bezier::surface(vtx, sizex, sizey, 120, 120));
 	bool								quit = false;
 	SDL_Event							event;
-	iso = Isometry::toIso(*Bezier::surface(vtx, 1, 1, 40, 40));
+	Vertex								tmp;
 
 	while (!quit)
 	{
@@ -41,10 +41,12 @@ void		Renderer::run(std::vector<std::vector<Vertex> > vtx)
 			glBegin(GL_TRIANGLE_STRIP);
 			for (int j = iso[i].size() - 1; j >= 0; j--)
 			{
-				glColor3f(1.0f, 0.34f, (iso[i][j].getZ() * 2.0) / 255.0);
-				glVertex3f(iso[i][j].getX(), iso[i][j].getY(), 0);
-				glColor3f(1.0f, 0.34f, (iso[i + 1][j].getZ() * 2.0) / 255.0);
-				glVertex3f(iso[i + 1][j].getX(), iso[i + 1][j].getY(), 0);
+				tmp = iso[i][j];
+				glColor3f(this->_put_red(tmp.getZ()), this->_put_green(tmp.getZ()), this->_put_blue(tmp.getZ()));
+				glVertex3f(tmp.getX(), tmp.getY(), 0);
+				tmp = iso[i + 1][j];
+				glColor3f(this->_put_red(tmp.getZ()), this->_put_green(tmp.getZ()), this->_put_blue(tmp.getZ()));
+				glVertex3f(tmp.getX(), tmp.getY(), 0);
 			}
 			glEnd();
 		}
@@ -59,6 +61,42 @@ void		Renderer::quit()
 	SDL_GL_DeleteContext(this->_glcontext);
 	SDL_Quit();
 	return ;
+}
+
+double		Renderer::_put_blue(double z)
+{
+	if (z <= 0 && z > -200)
+		return ((255.0 + z) / 255.0);
+	else if (z < -200)
+		return (50 / 255.0);
+	else if (z >= 255.0)
+		return (1);
+	else
+		return (0);
+}
+
+double		Renderer::_put_green(double z)
+{
+	if (z < -68)
+		return (0);
+	else if (z <= 0)
+		return ((136 + z * 2) / 255.0);
+	else if (z >= 255.0)
+		return (1);
+	else if (z < 100)
+		return ((60 + z) / 255.0);
+	else
+		return (150 / 255.0);
+}
+
+double	Renderer::_put_red(double z)
+{
+	if (z > 0 && z < 255.0)
+		return (z / 255.0);
+	else if (z >= 255.0)
+		return (1);
+	else
+		return (0);
 }
 
 Renderer::Renderer( void )

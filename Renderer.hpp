@@ -14,10 +14,13 @@ class Renderer
 		Renderer( void );
 		~Renderer( void );
 		void			init();
-		void			run(std::vector<std::vector<Vertex> > vtx);
+		void			run(std::vector<std::vector<Vertex> > vtx, int sizex, int sizey);
 		void			quit();
 
 	private:
+		double				_put_blue(double z);
+		double				_put_green(double z);
+		double				_put_red(double z);
 		Renderer(Renderer const & src);
 		Renderer &	operator=(Renderer const & rhs);
 		SDL_Window			*_window;
