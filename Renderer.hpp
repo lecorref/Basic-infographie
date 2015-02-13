@@ -3,8 +3,8 @@
 # include <string>
 # include <sstream>
 # include <iostream>
-#include </nfs/zfs-student-5/users/2013/afaucher/.brew/Cellar/sdl2/2.0.3/include/SDL2/SDL.h>
-#include </nfs/zfs-student-5/users/2013/afaucher/.brew/Cellar/sdl2/2.0.3/include/SDL2/SDL_opengl.h>
+#include </nfs/zfs-student-2/users/2013/frale-co/.brew/Cellar/sdl2/2.0.3/include/SDL2/SDL.h>
+#include </nfs/zfs-student-2/users/2013/frale-co/.brew/Cellar/sdl2/2.0.3/include/SDL2/SDL_opengl.h>
 # include "Isometry.hpp"
 # include "Bezier.hpp"
 
