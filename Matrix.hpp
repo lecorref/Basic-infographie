@@ -11,6 +11,7 @@ class Matrix
 	public:
 		Matrix(void);
 		Matrix(Matrix const & src);
+		Matrix( double values[4][4] );
 		virtual		~Matrix( void );
 		Matrix		operator*(Matrix const & rhs) const;
 		Vertex		operator*(Vertex const & vertex) const;
@@ -21,7 +22,6 @@ class Matrix
 		std::string	toString() const;
 
 	protected:
-		Matrix( double values[4][4] );
 		void		_initialize(double const values[4][4]);
 		double		_values[4][4];
 };

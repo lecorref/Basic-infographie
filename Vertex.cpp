@@ -1,27 +1,27 @@
 
 #include "Vertex.hpp"
 
-Vertex::Vertex( void ) : _x(0), _y(0), _z(0), _w(1), _color(new Color(0))
+Vertex::Vertex( void ) : _x(0.0), _y(0.0), _z(0.0), _w(1.0), _color(Color(0))
 {
 	return ;
 }
 
-Vertex::Vertex( double x, double y, double z, double w, Color * color) : _x(x), _y(y), _z(z), _w(w), _color(color)
+Vertex::Vertex( double x, double y, double z, double w, Color color) : _x(x), _y(y), _z(z), _w(w), _color(color)
 {
 	return ;
 }
 
-Vertex::Vertex( double x, double y, double z, double w, unsigned int color) : _x(x), _y(y), _z(z), _w(w), _color(new Color(color))
+Vertex::Vertex( double x, double y, double z, double w, unsigned int color) : _x(x), _y(y), _z(z), _w(w), _color(Color(color))
 {
 	return ;
 }
 
-Vertex::Vertex( double x, double y, double z, Color * color) : _x(x), _y(y), _z(z), _w(1), _color(color)
+Vertex::Vertex( double x, double y, double z, Color color) : _x(x), _y(y), _z(z), _w(1), _color(color)
 {
 	return ;
 }
 
-Vertex::Vertex( double x, double y, double z, unsigned int color) : _x(x), _y(y), _z(z), _w(1), _color(new Color(color))
+Vertex::Vertex( double x, double y, double z, unsigned int color) : _x(x), _y(y), _z(z), _w(1), _color(Color(color))
 {
 	return ;
 }
@@ -34,7 +34,6 @@ Vertex::Vertex(Vertex const & src)
 
 Vertex::~Vertex( void )
 {
-	delete this->_color;
 	return ;
 }
 
@@ -58,7 +57,7 @@ double		Vertex::getW() const
 	return this->_w;
 }
 
-Color *		Vertex::getColor() const
+Color		Vertex::getColor() const
 {
 	return this->_color;
 }
@@ -87,7 +86,7 @@ void		Vertex::setW(double w)
 	return ;
 }
 
-void		Vertex::setColor(Color * color)
+void		Vertex::setColor(Color color)
 {
 	this->_color = color;
 	return ;
@@ -101,6 +100,24 @@ Vertex &	Vertex::operator=(Vertex const & rhs)
 	this->_w = rhs._w;
 	this->_color = rhs._color;
 	return *this;
+}
+
+Vertex		Vertex::operator+(Vertex const & rhs)
+{
+	return Vertex(this->_x + rhs._x, this->_y + rhs._y, this->_z + rhs._z,
+			this->_w, this->_color + rhs._color);
+}
+
+Vertex	&	Vertex::operator+=(Vertex const & rhs)
+{
+	Vertex	vtx = Vertex(*this + rhs);
+	*this = vtx;
+	return *this;
+}
+
+Vertex		Vertex::operator*(double const rhs)
+{
+	return Vertex(this->_x * rhs, this->_y * rhs, this->_z * rhs, this->_w, this->_color);
 }
 
 std::string	Vertex::toString() const

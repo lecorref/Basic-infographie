@@ -9,21 +9,18 @@ RotationMatrixY::RotationMatrixY(double const angle)
 		{ -std::sin(angle), 0, std::cos(angle), 0 },
 		{ 0, 0, 0, 1 }
 	};
-	std::cout << "[RotationMatrixY] created" << std::endl;
 	this->_initialize(tab);
 	return ;
 }
 
-RotationMatrixY::RotationMatrixY(RotationMatrixY const & src)
+RotationMatrixY::RotationMatrixY(RotationMatrixY const & src) : Matrix(src)
 {
-	std::cout << "[RotationMatrixY] created" << std::endl;
 	*this = src;
 	return ;
 }
 
 RotationMatrixY::~RotationMatrixY( void )
 {
-	std::cout << "[RotationMatrixY] destructed" << std::endl;
 	return ;
 }
 

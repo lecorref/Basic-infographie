@@ -2,32 +2,33 @@
 
 Color::Color( void ) : _r(0), _g(0), _b(0)
 {
-	std::cout << "[Color] created" << std::endl;
+//	std::cout << "r = " << this->_r << " g = " << this->_g << " b = " << this->_b << std::endl;
 	return ;
 }
 
 Color::Color( unsigned int color ) : _r((color & 0xFF0000) >> 16), _g((color & 0x00FF00) >> 8), _b((color & 0x0000FF))
 {
-	std::cout << "[Color] created" << std::endl;
+//	std::cout << "r = " << this->_r << " g = " << this->_g << " b = " << this->_b << std::endl;
 	return ;
 }
 
 Color::Color( unsigned char r, unsigned char g, unsigned char b) : _r(r), _g(g), _b(b)
 {
-	std::cout << "[Color] created" << std::endl;
+//	std::cout << "r = " << this->_r << " g = " << this->_g << " b = " << this->_b << std::endl;
 	return ;
 }
 
 Color::Color(Color const & src)
 {
-	std::cout << "[Color] created" << std::endl;
+//	std::cout << "[Color] created" << std::endl;
 	*this = src;
+//	std::cout << "r = " << this->_r << " g = " << this->_g << " b = " << this->_b << std::endl;
 	return ;
 }
 
 Color::~Color( void )
 {
-	std::cout << "[Color] destructed" << std::endl;
+//	std::cout << "[Color] destructed" << std::endl;
 	return ;
 }
 
@@ -48,7 +49,7 @@ unsigned char		Color::getBlue() const
 
 unsigned int		Color::getHex() const
 {
-	return this->_r << 16 + this->_g << 8 + this->_b;
+	return (this->_r << 16) + (this->_g << 8) + this->_b;
 }
 
 Color				Color::operator*(double d)
@@ -80,7 +81,7 @@ std::string			Color::toString() const
 {
 	std::stringstream sstr;
 
-	sstr << "[Color : {" << this->_r << ", " << this->_g << ", " << this->_b << "}]";
+	sstr << "[Color : {" << static_cast<int>(this->_r) << ", " << static_cast<int>(this->_g) << ", " << static_cast<int>(this->_b) << "}]";
 	return sstr.str();
 }
 

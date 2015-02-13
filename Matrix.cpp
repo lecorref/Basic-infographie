@@ -5,7 +5,6 @@ Matrix::Matrix( void )
 {
 	double	tab[4][4];
 
-	std::cout << "[Matrix] created" << std::endl;
 	for (int i = 0; i < 4; i++)
 		for (int j = 0; j < 4; j++)
 			tab[i][j] = 0;
@@ -15,21 +14,18 @@ Matrix::Matrix( void )
 
 Matrix::Matrix( double values[4][4] )
 {
-	std::cout << "[Matrix] created" << std::endl;
 	this->_initialize(values);
 	return ;
 }
 
 Matrix::Matrix(Matrix const & src)
 {
-	std::cout << "[Matrix] created" << std::endl;
 	*this = src;
 	return ;
 }
 
 Matrix::~Matrix( void )
 {
-	std::cout << "[Matrix] destructed" << std::endl;
 	return ;
 }
 
@@ -89,5 +85,5 @@ Triangle	Matrix::transformTriangle(Triangle const & triangle) const
 
 std::string	Matrix::toString() const
 {
-
+	return "";
 }

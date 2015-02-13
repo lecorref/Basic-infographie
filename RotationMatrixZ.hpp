@@ -1,5 +1,5 @@
-#ifndef ROTATIONMATRIXX_HPP
-# define ROTATIONMATRIXX_HPP
+#ifndef ROTATIONMATRIXZ_HPP
+# define ROTATIONMATRIXZ_HPP
 # include <string>
 # include <sstream>
 # include <iostream>

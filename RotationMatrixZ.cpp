@@ -14,7 +14,7 @@ RotationMatrixZ::RotationMatrixZ(double const angle)
 	return ;
 }
 
-RotationMatrixZ::RotationMatrixZ(RotationMatrixZ const & src)
+RotationMatrixZ::RotationMatrixZ(RotationMatrixZ const & src) : Matrix(src)
 {
 	std::cout << "[RotationMatrixZ] created" << std::endl;
 	*this = src;
