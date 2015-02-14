@@ -16,7 +16,7 @@ SOURCES = main.cpp \
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
-LIBPATH = /nfs/zfs-student-3/users/2013_paris/tdieumeg/.brew/Cellar/sdl2/2.0.3/include/SDL2/
+LIBPATH = /nfs/zfs-student-2/users/2013/frale-co/.brew/Cellar/sdl2/2.0.3/include/SDL2/
 
 NAME = mod1
 

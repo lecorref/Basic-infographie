@@ -85,5 +85,12 @@ Triangle	Matrix::transformTriangle(Triangle const & triangle) const
 
 std::string	Matrix::toString() const
 {
-	return "";
+	std::stringstream sstr;
+
+	sstr << "[Matrix :\t{" << this->_values[0][0] << ", " << this->_values[0][1] << ", " << this->_values[0][2] << " ,"<< this->_values[0][3] << "}] \n"
+		 << "\t\t{" << this->_values[1][0] << ", " << this->_values[1][1] << ", " << this->_values[1][2] << " ,"<<this->_values[1][2] <<"}] \n"
+		 << "\t\t{" << this->_values[2][0] << ", " << this->_values[2][1] << ", " << this->_values[2][2] << " ," << this->_values[2][3] << "}] \n"
+		 << "\t\t{" << this->_values[3][0] << ", " << this->_values[3][1] << ", " << this->_values[3][2] << " ," << this->_values[3][3] << "}] \n";
+
+	return sstr.str();
 }

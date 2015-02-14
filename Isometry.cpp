@@ -14,6 +14,7 @@ std::vector<std::vector<Vertex> > Isometry::toIso(std::vector<std::vector<Vertex
 	Matrix								rot = RotationMatrixX(deg2rad(35.264)) * RotationMatrixY(deg2rad(45.0));
 	std::vector<Vertex> row;
 
+	std::cout << rot.toString() << std::endl;
 	ret.reserve(surface.size());
 	for (unsigned int i = 0; i < surface.size(); i++)
 	{
@@ -21,8 +22,8 @@ std::vector<std::vector<Vertex> > Isometry::toIso(std::vector<std::vector<Vertex
 		row.reserve(surface[i].size());
 		for (int j = surface[i].size() - 1; j >= 0; j--)
 		{
-			Vertex tmp = mat * (rot * surface[i][j]);
-			tmp.setZ(surface[i][j].getZ());
+			Vertex tmp = (rot * surface[i][j]);
+			tmp.setZ(200 - surface[i][j].getY());
 			row.push_back(tmp);
 		}
 		ret.push_back(row);
