@@ -1,38 +1,48 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: afaucher <afaucher@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/02/09 16:49:11 by afaucher          #+#    #+#             */
+/*   Updated: 2015/02/17 19:13:17 by afaucher         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
 #include "Renderer.hpp"
+#include "Lexer.hpp"
 
-int	main()
+int	main(int ac, char **av)
 {
-	std::vector<std::vector<Vertex> >	vtx;
+	std::vector<std::vector<Vertex> >	vtx2;
 	std::vector<Vertex>					vec;
-	Vertex								p1(100.0, 200.0, -100.0, 0.0, 255);
-	Vertex								p2(300.0, 200.0, -100.0, 0.0, 0xFF0000);
-	Vertex								p3(600.0, 200.0, -100.0, 0.0, 0xFF00FF);
-	Vertex								p4(100.0, 200.0, 100.0, 0.0, 255);
-	Vertex								p5(300.0, -400.0, 100.0, 0.0, 0xFF0000);
-	Vertex								p6(600.0, 200.0, 100.0, 0.0, 0xFF00FF);
-	Vertex								p7(100.0, 200.0, 300, 0.0, 0xFF00FF);
-	Vertex								p8(300.0, 200.0, 300, 0.0, 255);
-	Vertex								p9(600.0, 200.0, 300.0, 0.0, 255);
 
+	Vertex								p1(4.0, 4.0, 0.4);
+	Vertex								p2(3.0, 4.0, 1.0);
+	Vertex								p4(1.0, 5.0, 1.0);
+	Vertex								p5(3.0, 5.0, 2.0);
+
+	if (ac > 1)
+		vtx2 = Lexer::readFile(av[1]);
+	if (ac > 1 && vtx2.empty())
+	{
+		std::cerr << "File is not well formated or empty." << std::endl;
+		return 1;
+	}
 	vec.push_back(p1);
 	vec.push_back(p2);
-	vec.push_back(p3);
-	vtx.push_back(vec);
-	vec.clear();
 	vec.push_back(p4);
 	vec.push_back(p5);
-	vec.push_back(p6);
-	vtx.push_back(vec);
-	vec.clear();
-	vec.push_back(p7);
-	vec.push_back(p8);
-	vec.push_back(p9);
-	vtx.push_back(vec);
 
 	Renderer renderer;
 
 	renderer.init();
-	renderer.run(vtx, 2, 2);
+	if (ac == 1)
+		renderer.run(vec, 400, 400);
+	else
+		renderer.run(vec, 400, 400);
 	renderer.quit();
 	return (0);
 }

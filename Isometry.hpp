@@ -6,6 +6,7 @@
 # include <cmath>
 # include <vector>
 # include "Vertex.hpp"
+# include "RotationMatrixZ.hpp"
 # include "RotationMatrixY.hpp"
 # include "RotationMatrixX.hpp"
 # define deg2rad(angle) angle / 180 * M_PI

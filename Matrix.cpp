@@ -71,11 +71,10 @@ void		Matrix::_initialize(double const values[4][4])
 
 Vertex		Matrix::operator*(Vertex const & vertex) const
 {
-	double	x = vertex.getX() * this->_values[0][0] + vertex.getY() * this->_values[0][1] + vertex.getZ() * this->_values[0][2] + vertex.getW() * this->_values[0][3];
-	double	y = vertex.getX() * this->_values[1][0] + vertex.getY() * this->_values[1][1] + vertex.getZ() * this->_values[1][2] + vertex.getW() * this->_values[1][3];
-	double	z = vertex.getX() * this->_values[2][0] + vertex.getY() * this->_values[2][1] + vertex.getZ() * this->_values[2][2] + vertex.getW() * this->_values[2][3];
-	double	w = vertex.getX() * this->_values[3][0] + vertex.getY() * this->_values[3][1] + vertex.getZ() * this->_values[3][2] + vertex.getW() * this->_values[3][3];
-	return Vertex(x, y, z, w, vertex.getColor());
+	double	x = vertex.getX() * this->_values[0][0] + vertex.getY() * this->_values[0][1] + vertex.getZ() * this->_values[0][2];
+	double	y = vertex.getX() * this->_values[1][0] + vertex.getY() * this->_values[1][1] + vertex.getZ() * this->_values[1][2];
+	double	z = vertex.getX() * this->_values[2][0] + vertex.getY() * this->_values[2][1] + vertex.getZ() * this->_values[2][2];
+	return Vertex(x, y, z);
 }
 
 Triangle	Matrix::transformTriangle(Triangle const & triangle) const

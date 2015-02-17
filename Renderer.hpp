@@ -3,10 +3,10 @@
 # include <string>
 # include <sstream>
 # include <iostream>
-#include </nfs/zfs-student-2/users/2013/frale-co/.brew/Cellar/sdl2/2.0.3/include/SDL2/SDL.h>
-#include </nfs/zfs-student-2/users/2013/frale-co/.brew/Cellar/sdl2/2.0.3/include/SDL2/SDL_opengl.h>
+# include <SDL.h>
+# include <SDL_opengl.h>
 # include "Isometry.hpp"
-# include "Bezier.hpp"
+# include "Iswi.hpp"
 
 class Renderer
 {
@@ -14,7 +14,7 @@ class Renderer
 		Renderer( void );
 		~Renderer( void );
 		void			init();
-		void			run(std::vector<std::vector<Vertex> > vtx, int sizex, int sizey);
+		void			run(std::vector<Vertex> vtx, int sizex, int sizey);
 		void			quit();
 
 	private:

@@ -5,22 +5,22 @@ void		Renderer::init()
 {
 	SDL_Init(SDL_INIT_VIDEO);
 	this->_window = SDL_CreateWindow("SDL2 Pixel Drawing",
-			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_OPENGL);
+			SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 960, SDL_WINDOW_OPENGL);
 
 	this->_glcontext = SDL_GL_CreateContext(this->_window);
-	glViewport(0, 0, 640, 480);
+	glViewport(0, 0, 1280, 960);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	glOrtho(0, 640, 480, 0, -1, 1);
+	glOrtho(0, 1280, 960, 0, -1, 1);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glClearColor(0, 0, 0, 0);
 	return ;
 }
 
-void		Renderer::run(std::vector<std::vector<Vertex> > vtx, int sizex, int sizey)
+void		Renderer::run(std::vector<Vertex> vtx, int sizex, int sizey)
 {
-	std::vector<std::vector<Vertex> >	iso = Isometry::toIso(*Bezier::surface(vtx, sizex, sizey, 120, 120));
+	std::vector<std::vector <Vertex> >	iso = Isometry::toIso(Iswi::surface(vtx, sizex, sizey, 800, 800));
 	bool								quit = false;
 	SDL_Event							event;
 	Vertex								tmp;
