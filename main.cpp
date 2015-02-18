@@ -6,7 +6,7 @@
 /*   By: afaucher <afaucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 16:49:11 by afaucher          #+#    #+#             */
-/*   Updated: 2015/02/17 19:13:17 by afaucher         ###   ########.fr       */
+//   Updated: 2015/02/18 12:37:40 by frale-co         ###   ########.fr       //
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av)
 	std::vector<std::vector<Vertex> >	vtx2;
 	std::vector<Vertex>					vec;
 
-	Vertex								p1(4.0, 4.0, 0.4);
+	Vertex								p1(400.0, 400.0, 40.4);
 	Vertex								p2(3.0, 4.0, 1.0);
 	Vertex								p4(1.0, 5.0, 1.0);
 	Vertex								p5(3.0, 5.0, 2.0);

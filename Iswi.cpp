@@ -29,12 +29,12 @@ double										Iswi::_avg(const std::vector<Vertex > &control, double x, double
 
 	for (it = control.begin(); it != control.end(); ++it)
 	{
-		tmp = (std::pow(x - (*it).getX(), 2) + std::pow(y - (*it).getZ(), 2));
+		tmp = (std::pow(x - (*it).getX(), 2) + std::pow(y - (*it).getY(), 2));
 		if (tmp == 0)
-			return (*it).getY();
-		z += (*it).getY() / tmp;
+			return (*it).getZ();
+		z += (*it).getZ() / tmp;
 		save += 1.0 / tmp;
 	}
-	z /= tmp;
+	z /= save;
 	return z;
 }
