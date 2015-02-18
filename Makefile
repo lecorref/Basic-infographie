@@ -24,7 +24,7 @@ NAME = mod1
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $(OBJECTS) $(LIB) -o $(NAME) -I $(LIBPATH)
+	$(CXX) $(CXXFLAGS) $(OBJECTS) -o $(NAME) -I $(LIBPATH)
 
 clean:
 	rm -f $(OBJECTS)
