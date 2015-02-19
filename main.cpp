@@ -6,11 +6,10 @@
 /*   By: afaucher <afaucher@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 16:49:11 by afaucher          #+#    #+#             */
-//   Updated: 2015/02/18 12:37:40 by frale-co         ###   ########.fr       //
+/*   Updated: 2015/02/19 12:28:02 by afaucher         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "Renderer.hpp"
 #include "Lexer.hpp"
 
@@ -19,10 +18,12 @@ int	main(int ac, char **av)
 	std::vector<std::vector<Vertex> >	vtx2;
 	std::vector<Vertex>					vec;
 
-	Vertex								p1(400.0, 400.0, 40.4);
-	Vertex								p2(3.0, 4.0, 1.0);
-	Vertex								p4(1.0, 5.0, 1.0);
-	Vertex								p5(3.0, 5.0, 2.0);
+	Vertex								p1(400.0, 400.0, 400.0);
+	Vertex								p4(390.0, 390.0, 390.0);
+	Vertex								p2(200.0, 200.0, 200.0);
+	Vertex								p3(600.0, 300.0, 350.0);
+/*Vertex								p4(800.0, 800.0, 0.0);
+	Vertex								p5(0.0, 800.0, 0.0);*/
 
 	if (ac > 1)
 		vtx2 = Lexer::readFile(av[1]);
@@ -33,8 +34,9 @@ int	main(int ac, char **av)
 	}
 	vec.push_back(p1);
 	vec.push_back(p2);
+	vec.push_back(p3);
 	vec.push_back(p4);
-	vec.push_back(p5);
+	//vec.push_back(p5);
 
 	Renderer renderer;
 

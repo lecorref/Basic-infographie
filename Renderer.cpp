@@ -1,4 +1,3 @@
-
 #include "Renderer.hpp"
 
 void		Renderer::init()
@@ -42,10 +41,10 @@ void		Renderer::run(std::vector<Vertex> vtx, int sizex, int sizey)
 			for (int j = iso[i].size() - 1; j >= 0; j--)
 			{
 				tmp = iso[i][j];
-				glColor3f(this->_put_red(tmp.getZ()), this->_put_green(tmp.getZ()), this->_put_blue(tmp.getZ()));
+				glColor3f(this->_put_red(-tmp.getZ()), this->_put_green(-tmp.getZ()), this->_put_blue(-tmp.getZ()));
 				glVertex3f(tmp.getX(), tmp.getY(), 0);
 				tmp = iso[i + 1][j];
-				glColor3f(this->_put_red(tmp.getZ()), this->_put_green(tmp.getZ()), this->_put_blue(tmp.getZ()));
+				glColor3f(this->_put_red(-tmp.getZ()), this->_put_green(-tmp.getZ()), this->_put_blue(-tmp.getZ()));
 				glVertex3f(tmp.getX(), tmp.getY(), 0);
 			}
 			glEnd();
