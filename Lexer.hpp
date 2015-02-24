@@ -7,14 +7,14 @@
 class Lexer
 {
 	public:
-		static std::vector<std::vector<Vertex> > &	readFile(std::string const filename);
+		static std::vector<Vertex> &				readFile(std::string const filename);
 
 	private:
 		Lexer( void );
 		Lexer(Lexer const & src);
 		~Lexer( void );
 		Lexer &										operator=(Lexer const & rhs);
-		static std::vector<Vertex>					_lexLine(std::string const line);
+		static void									_lexLine(std::string const line, std::vector<Vertex> * ret);
 		static Vertex								_getVertex(std::string const tmp);
 		static bool									_checkFormat(std::string const line);
 };

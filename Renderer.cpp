@@ -19,22 +19,25 @@ void		Renderer::init()
 
 void		Renderer::run(std::vector<Vertex> vtx, int sizex, int sizey)
 {
-	std::vector<std::vector <Vertex> >	iso = Isometry::toIso(Iswi::surface(vtx, sizex, sizey, 800, 800));
+	std::vector<std::vector<Vertex> >	iso = Isometry::toIso(Iswi::surface(vtx, sizex, sizey, 800, 800));
+	std::vector<Triangle >				triangles = Isometry::toTriangles(iso);
 	bool								quit = false;
 	SDL_Event							event;
 	Vertex								tmp;
+	Interval							itv;
+	Fps									fps;
 
 	while (!quit)
 	{
-		SDL_WaitEvent(&event);
+		SDL_PollEvent(&event);
 		switch (event.type)
 		{
 			case SDL_QUIT:
 				quit = true;
 				break;
 		}
-
 		glClear(GL_COLOR_BUFFER_BIT);
+		std::cout << itv.value() << std::endl;
 		for (unsigned int i = 0; i < iso.size() - 1; i++)
 		{
 			glBegin(GL_TRIANGLE_STRIP);
@@ -50,8 +53,27 @@ void		Renderer::run(std::vector<Vertex> vtx, int sizex, int sizey)
 			glEnd();
 		}
 		SDL_GL_SwapWindow(this->_window);
+		SDL_Delay(33.33);
+		itv.refresh();
+		fps.update();
 	}
 	return ;
+}
+
+void		Renderer::drawTriangle(Triangle triangle)
+{
+	Vertex	tmp;
+	glBegin(GL_TRIANGLES);
+	tmp = triangle.getA();
+	glColor3f(this->_put_red(-tmp.getZ()), this->_put_green(-tmp.getZ()), this->_put_blue(-tmp.getZ()));
+	glVertex3f(tmp.getX(), tmp.getY(), 0);
+	tmp = triangle.getB();
+	glColor3f(this->_put_red(-tmp.getZ()), this->_put_green(-tmp.getZ()), this->_put_blue(-tmp.getZ()));
+	glVertex3f(tmp.getX(), tmp.getY(), 0);
+	tmp = triangle.getC();
+	glColor3f(this->_put_red(-tmp.getZ()), this->_put_green(-tmp.getZ()), this->_put_blue(-tmp.getZ()));
+	glVertex3f(tmp.getX(), tmp.getY(), 0);
+	glEnd();
 }
 
 void		Renderer::quit()

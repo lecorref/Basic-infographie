@@ -5,6 +5,7 @@ CXXFLAGS = -Wall -Werror -Wextra -g -std=c++98 -pedantic-errors -framework OpenG
 SOURCES = main.cpp \
 		  Color.cpp \
 		  Vertex.cpp \
+		  Vector.cpp \
 		  Iswi.cpp \
 		  Isometry.cpp \
 		  Matrix.cpp \
@@ -12,6 +13,8 @@ SOURCES = main.cpp \
 		  RotationMatrixY.cpp \
 		  RotationMatrixZ.cpp \
 		  Renderer.cpp \
+		  Interval.cpp \
+		  Fps.cpp \
 		  Triangle.cpp \
 		  Lexer.cpp
 

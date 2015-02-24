@@ -3,11 +3,13 @@
 
 Triangle::Triangle( void )
 {
+	this->_initNormalVector();
 	return ;
 }
 
 Triangle::Triangle( Vertex const & a, Vertex const & b, Vertex const & c ) : _a(a), _b(b), _c(c)
 {
+	this->_initNormalVector();
 	return ;
 }
 
@@ -43,6 +45,14 @@ Vertex		Triangle::getB() const
 Vertex		Triangle::getC() const
 {
 	return this->_c;
+}
+
+void		Triangle::_initNormalVector()
+{
+	Vector	ab(this->_a, this->_b);
+	Vector	ac(this->_a, this->_c);
+
+	this->_normal = ab ^ ac;
 }
 
 std::string	Triangle::toString() const

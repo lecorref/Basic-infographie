@@ -30,15 +30,15 @@ void										Iswi::_generate(std::vector<Vertex > & control, int x, int y, int 
 
 	for (int i = -1; i <= 50; i++)
 	{
-		vtx = Vertex(i * divx, -height / 2, 0);
-		vtx2 = Vertex(i * divx, (y + 1) * height, 0);
+		vtx = Vertex(i * divx, -height / 4.0, 0);
+		vtx2 = Vertex(i * divx, (y + 1) * (height / 4.0), 0);
 		control.push_back(vtx);
 		control.push_back(vtx2);
 	}
 	for (int j = 0; j < 50; j++)
 	{
-		vtx = Vertex(-width, j * divy, 0);
-		vtx2 = Vertex((x + 1) * width, j * divy, 0);
+		vtx = Vertex(-width / 4.0, j * divy, 0);
+		vtx2 = Vertex((x + 1) * (width / 4.0), j * divy, 0);
 		control.push_back(vtx);
 		control.push_back(vtx2);
 	}

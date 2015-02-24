@@ -3,18 +3,18 @@
 #include <fstream>
 #include "Lexer.hpp"
 
-std::vector<std::vector<Vertex> > &		Lexer::readFile(std::string const filename)
+std::vector<Vertex> &		Lexer::readFile(std::string const filename)
 {
 	std::string							line;
 	std::ifstream						file(filename.c_str());
-	std::vector<std::vector<Vertex> > *	ret = new std::vector<std::vector<Vertex> >;
+	std::vector<Vertex>					*ret = new std::vector<Vertex>;
 
 	if(file.is_open())
 	{
 		while (std::getline(file, line))
 		{
 			if (Lexer::_checkFormat(line))
-				ret->push_back(Lexer::_lexLine(line));
+				Lexer::_lexLine(line, ret);
 		}
 		file.close();
 	}
@@ -24,9 +24,8 @@ std::vector<std::vector<Vertex> > &		Lexer::readFile(std::string const filename)
 	return *ret;
 }
 
-std::vector<Vertex>					Lexer::_lexLine(std::string const line)
+void								Lexer::_lexLine(std::string const line, std::vector<Vertex> * ret)
 {
-	std::vector<Vertex>				ret;
 	std::stringstream				tmp;
 	unsigned int					i = 0;
 	unsigned int					j;
@@ -42,14 +41,11 @@ std::vector<Vertex>					Lexer::_lexLine(std::string const line)
 		{
 			*tmp << line[j];
 		}
-		ret.push_back(Lexer::_getVertex(tmp->str()));
-		std::cout << "k = " << k <<std::endl;
+		ret->push_back(Lexer::_getVertex(tmp->str()));
 		k = j;
 		i = j;
 		delete tmp;
 	}
-
-	return ret;
 }
 
 Vertex								Lexer::_getVertex(std::string const tmp)
@@ -58,6 +54,7 @@ Vertex								Lexer::_getVertex(std::string const tmp)
 	unsigned int					i = 0;
 	unsigned int					j = 0;
 	unsigned int					k = 0;
+	//double							prct;
 
 	for (i = 0; i < tmp.size(); i++)
 	{
@@ -66,9 +63,18 @@ Vertex								Lexer::_getVertex(std::string const tmp)
 		k++;
 		i = j;
 	}
-	Vertex							ret(nb[0] / 100, nb[1] / 100, nb[2] / 100);
+	/*for ( i = 0; i < 4; i++)
+	{
+		if (nb[i] > 800)
+		{
+			prct = (nb[i] / 20000);
+			std::cout << " prct = " << std::endl;
+			nb[i] = 800 * prct;
+			std::cout << "nb[" << i << "] = " << nb[i] << std::endl;
+		}
+	}*/
+	Vertex							ret(nb[0], nb[1], nb[2]);
 
-	std::cout << "Line: " << nb[0] << ", " << nb[1] << ", " << nb[2] << std::endl;
 	return ret;
 }
 
@@ -79,7 +85,6 @@ bool								Lexer::_checkFormat(std::string const line)
 	int								virgule = 0;
 	unsigned int					i = 0;
 
-	std::cout << "pouet" << std::endl;
 	while (i < line.size())
 	{
 		if (line[i] == '(' && crochet1 == crochet2)

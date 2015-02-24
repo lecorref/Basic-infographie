@@ -14,7 +14,8 @@
 class Isometry
 {
 	public:
-		static std::vector<std::vector<Vertex> > toIso(std::vector<std::vector<Vertex> > const & surface);
+		static std::vector<std::vector<Vertex> >	toIso(std::vector<std::vector<Vertex> > const & surface);
+		static std::vector<Triangle>				toTriangles(std::vector<std::vector<Vertex> > const & surface);
 	private:
 		Isometry( void );
 		Isometry(Isometry const & src);

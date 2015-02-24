@@ -1,4 +1,3 @@
-
 #include "Isometry.hpp"
 
 std::vector<std::vector<Vertex> > Isometry::toIso(std::vector<std::vector<Vertex> > const & surface)
@@ -23,11 +22,31 @@ std::vector<std::vector<Vertex> > Isometry::toIso(std::vector<std::vector<Vertex
 		}
 		ret.push_back(row);
 	}
-
-
-
-
-
-
 	return ret;
+}
+
+std::vector<Triangle>			Isometry::toTriangles(std::vector<std::vector<Vertex> > const & surface)
+{
+	Vertex						a;
+	Vertex						b;
+	Vertex						c;
+	std::vector<Triangle>		lst;
+	int							width = surface.size();
+	int							height = surface[0].size();
+
+	for (int j = height - 1; j > 0; j--)
+	{
+		for (int i = 0; i < width - 1; i++)
+		{
+			a = surface[i][j];
+			b = surface[i][j - 1];
+			c = surface[i + 1][j - 1];
+			lst.push_back(Triangle(a, b, c));
+			a = surface[i + 1][j];
+			b = surface[i][j];
+			c = surface[i + 1][j - 1];
+			lst.push_back(Triangle(a, b, c));
+		}
+	}
+	return lst;
 }

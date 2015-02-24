@@ -16,7 +16,7 @@ Vector::Vector( Vertex const & ori, Vertex const & dest) : _x(dest.getX() - ori.
 	return ;
 }
 
-Vector::Vector( double const x, double const y, double const z )
+Vector::Vector( double const x, double const y, double const z ) : _x(x), _y(y), _z(z)
 {
 	return ;
 }

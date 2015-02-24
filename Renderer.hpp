@@ -5,6 +5,9 @@
 # include <iostream>
 # include <SDL.h>
 # include <SDL_opengl.h>
+# include <unistd.h>
+# include "Fps.hpp"
+# include "Interval.hpp"
 # include "Isometry.hpp"
 # include "Iswi.hpp"
 
@@ -15,6 +18,7 @@ class Renderer
 		~Renderer( void );
 		void			init();
 		void			run(std::vector<Vertex> vtx, int sizex, int sizey);
+		void			drawTriangle(Triangle triangle);
 		void			quit();
 
 	private:

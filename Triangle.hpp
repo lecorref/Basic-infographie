@@ -4,6 +4,7 @@
 # include <sstream>
 # include <iostream>
 # include "Vertex.hpp"
+# include "Vector.hpp"
 
 class Triangle
 {
@@ -16,12 +17,15 @@ class Triangle
 		Vertex		getA() const;
 		Vertex		getB() const;
 		Vertex		getC() const;
+		Vector		getNormal() const;
 		std::string	toString() const;
 
 	private:
+		void		_initNormalVector();
 		Vertex		_a;
 		Vertex		_b;
 		Vertex		_c;
+		Vector		_normal;
 };
 
 std::ostream &		operator<<(std::ostream & o, Triangle const & rhs);
